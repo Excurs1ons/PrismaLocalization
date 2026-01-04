@@ -1,0 +1,135 @@
+{
+  "culture": "en-US",
+  "entries": [
+    {
+      "key": "HelloWorld",
+      "namespace": "Common",
+      "category": "General",
+      "text": "Hello, World!",
+      "context": "Welcome greeting"
+    },
+    {
+      "key": "ItemCount",
+      "namespace": "UI",
+      "category": "General",
+      "text": "You have {count} item(s).",
+      "comment": "Item count display, use ICU formatting for plurals"
+    },
+    {
+      "key": "Items",
+      "namespace": "UI",
+      "category": "Noun",
+      "text": "Items"
+    },
+    {
+      "key": "Item_sg",
+      "namespace": "UI",
+      "category": "Noun",
+      "text": "item"
+    },
+    {
+      "key": "Item_pl",
+      "namespace": "UI",
+      "category": "Noun",
+      "text": "items"
+    },
+    {
+      "key": "Character_Warrior",
+      "namespace": "Characters",
+      "category": "Noun",
+      "text": "Warrior"
+    },
+    {
+      "key": "Character_Mage",
+      "namespace": "Characters",
+      "category": "Noun",
+      "text": "Mage"
+    },
+    {
+      "key": "Pronoun_I",
+      "namespace": "Pronouns",
+      "category": "Pronoun",
+      "text": "I"
+    },
+    {
+      "key": "Pronoun_Me",
+      "namespace": "Pronouns",
+      "category": "Pronoun",
+      "text": "me"
+    },
+    {
+      "key": "Pronoun_You",
+      "namespace": "Pronouns",
+      "category": "Pronoun",
+      "text": "you"
+    },
+    {
+      "key": "Pronoun_He",
+      "namespace": "Pronouns",
+      "category": "Pronoun",
+      "text": "he"
+    },
+    {
+      "key": "Pronoun_Him",
+      "namespace": "Pronouns",
+      "category": "Pronoun",
+      "text": "him"
+    },
+    {
+      "key": "Pronoun_She",
+      "namespace": "Pronouns",
+      "category": "Pronoun",
+      "text": "she"
+    },
+    {
+      "key": "Pronoun_Her",
+      "namespace": "Pronouns",
+      "category": "Pronoun",
+      "text": "her"
+    },
+    {
+      "key": "Menu_Start",
+      "namespace": "Menu",
+      "category": "Menu",
+      "text": "Start Game"
+    },
+    {
+      "key": "Menu_Settings",
+      "namespace": "Menu",
+      "category": "Menu",
+      "text": "Settings"
+    },
+    {
+      "key": "Menu_Quit",
+      "namespace": "Menu",
+      "category": "Menu",
+      "text": "Quit"
+    },
+    {
+      "key": "Error_ConnectionFailed",
+      "namespace": "Errors",
+      "category": "Error",
+      "text": "Connection failed: {reason}",
+      "comment": "Displayed when server connection fails"
+    },
+    {
+      "key": "Error_InvalidInput",
+      "namespace": "Errors",
+      "category": "Error",
+      "text": "Invalid input, please check and try again."
+    },
+    {
+      "key": "Notification_NewMessage",
+      "namespace": "Notifications",
+      "category": "Notification",
+      "text": "You have {count} new message(s)"
+    },
+    {
+      "key": "Dialog_Greeting",
+      "namespace": "Dialog",
+      "category": "Dialog",
+      "text": "Welcome!",
+      "context": "NPC greeting when first met"
+    }
+  ]
+}

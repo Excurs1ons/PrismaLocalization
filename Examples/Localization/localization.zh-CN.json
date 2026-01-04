@@ -1,0 +1,105 @@
+{
+  "culture": "zh-CN",
+  "entries": [
+    {
+      "key": "HelloWorld",
+      "namespace": "Common",
+      "category": "General",
+      "text": "你好，世界！",
+      "context": "欢迎问候语"
+    },
+    {
+      "key": "ItemCount",
+      "namespace": "UI",
+      "category": "General",
+      "text": "你有 {count} 个物品。",
+      "comment": "物品数量显示，使用 ICU 格式化复数"
+    },
+    {
+      "key": "Items",
+      "namespace": "UI",
+      "category": "Noun",
+      "text": "物品"
+    },
+    {
+      "key": "Character_Warrior",
+      "namespace": "Characters",
+      "category": "Noun",
+      "text": "战士"
+    },
+    {
+      "key": "Character_Mage",
+      "namespace": "Characters",
+      "category": "Noun",
+      "text": "法师"
+    },
+    {
+      "key": "Pronoun_I",
+      "namespace": "Pronouns",
+      "category": "Pronoun",
+      "text": "我"
+    },
+    {
+      "key": "Pronoun_You",
+      "namespace": "Pronouns",
+      "category": "Pronoun",
+      "text": "你"
+    },
+    {
+      "key": "Pronoun_He",
+      "namespace": "Pronouns",
+      "category": "Pronoun",
+      "text": "他"
+    },
+    {
+      "key": "Pronoun_She",
+      "namespace": "Pronouns",
+      "category": "Pronoun",
+      "text": "她"
+    },
+    {
+      "key": "Menu_Start",
+      "namespace": "Menu",
+      "category": "Menu",
+      "text": "开始游戏"
+    },
+    {
+      "key": "Menu_Settings",
+      "namespace": "Menu",
+      "category": "Menu",
+      "text": "设置"
+    },
+    {
+      "key": "Menu_Quit",
+      "namespace": "Menu",
+      "category": "Menu",
+      "text": "退出"
+    },
+    {
+      "key": "Error_ConnectionFailed",
+      "namespace": "Errors",
+      "category": "Error",
+      "text": "连接失败：{reason}",
+      "comment": "连接服务器失败时显示"
+    },
+    {
+      "key": "Error_InvalidInput",
+      "namespace": "Errors",
+      "category": "Error",
+      "text": "输入无效，请检查后重试。"
+    },
+    {
+      "key": "Notification_NewMessage",
+      "namespace": "Notifications",
+      "category": "Notification",
+      "text": "您有 {count} 条新消息"
+    },
+    {
+      "key": "Dialog_Greeting",
+      "namespace": "Dialog",
+      "category": "Dialog",
+      "text": "欢迎来到这里！",
+      "context": "NPC 见面时的问候语"
+    }
+  ]
+}

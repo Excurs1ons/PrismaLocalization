@@ -1,0 +1,67 @@
+{
+  "culture": "ja-JP",
+  "entries": [
+    {
+      "key": "HelloWorld",
+      "namespace": "Common",
+      "category": "General",
+      "text": "こんにちは、世界！",
+      "context": "ようこそ"
+    },
+    {
+      "key": "ItemCount",
+      "namespace": "UI",
+      "category": "General",
+      "text": "{count}個のアイテムを持っています。",
+      "comment": "アイテム数表示"
+    },
+    {
+      "key": "Items",
+      "namespace": "UI",
+      "category": "Noun",
+      "text": "アイテム"
+    },
+    {
+      "key": "Character_Warrior",
+      "namespace": "Characters",
+      "category": "Noun",
+      "text": "戦士"
+    },
+    {
+      "key": "Character_Mage",
+      "namespace": "Characters",
+      "category": "Noun",
+      "text": "魔法使い"
+    },
+    {
+      "key": "Pronoun_I",
+      "namespace": "Pronouns",
+      "category": "Pronoun",
+      "text": "私"
+    },
+    {
+      "key": "Pronoun_You",
+      "namespace": "Pronouns",
+      "category": "Pronoun",
+      "text": "あなた"
+    },
+    {
+      "key": "Menu_Start",
+      "namespace": "Menu",
+      "category": "Menu",
+      "text": "ゲーム開始"
+    },
+    {
+      "key": "Menu_Settings",
+      "namespace": "Menu",
+      "category": "Menu",
+      "text": "設定"
+    },
+    {
+      "key": "Menu_Quit",
+      "namespace": "Menu",
+      "category": "Menu",
+      "text": "終了"
+    }
+  ]
+}
