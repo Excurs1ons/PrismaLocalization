@@ -76,19 +76,34 @@ public class JsonLocalizationProvider : ILocalizationProvider
 
         if (token is JObject obj)
         {
-            FlattenJsonObject(obj, "", cultureDict);
-        }
-        else if (token is LocalizationData data)
-        {
-            // 支持 LocalizationEntry 格式
-            foreach (var entry in data.Entries)
+            // 兼容两种 JSON 格式：
+            // 1) 扁平/分层字典（直接展开）
+            // 2) LocalizationData { culture, entries }（从 entries 导入）
+            if (obj["entries"] is JToken)
             {
-                var key = new LocalizationKey(
-                    entry.Namespace ?? "",
-                    entry.Key,
-                    Enum.TryParse<LocalizationCategory>(entry.Category, out var cat) ? cat : LocalizationCategory.General
-                );
-                cultureDict.TryAdd(key.VariantKey, entry.Text);
+                var data = obj.ToObject<LocalizationData>();
+                if (data?.Entries != null)
+                {
+                    foreach (var entry in data.Entries)
+                    {
+                        var cat = Enum.TryParse<LocalizationCategory>(entry.Category, out var parsed)
+                            ? parsed
+                            : LocalizationCategory.General;
+
+                        var key = new LocalizationKey(
+                            entry.Namespace ?? string.Empty,
+                            entry.Key,
+                            cat,
+                            LocalizationVariant.None,
+                            entry.Text);
+
+                        cultureDict.TryAdd(key.VariantKey, entry.Text);
+                    }
+                }
+            }
+            else
+            {
+                FlattenJsonObject(obj, "", cultureDict);
             }
         }
     }

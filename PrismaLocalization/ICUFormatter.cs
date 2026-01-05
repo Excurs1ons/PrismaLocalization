@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.RegularExpressions;
 using SmartFormat;
 using SmartFormat.Core.Extensions;
@@ -27,10 +28,19 @@ public partial class ICUFormatter
     /// </summary>
     private static SmartFormatter CreateFormatter()
     {
-        var formatter = Smart.CreateDefaultSmartFormat();
-        formatter.Settings.FormatErrorAction = ErrorAction.ThrowError;
-        formatter.Settings.ParseErrorAction = ErrorAction.ThrowError;
+        SmartSettings settings = new()
+        {
+            Formatter =
+            {
+                ErrorAction = FormatErrorAction.ThrowError
+            },
+            Parser =
+            {
+                ErrorAction = ParseErrorAction.ThrowError
+            }
+        };
 
+        var formatter = Smart.CreateDefaultSmartFormat(settings);
         // 添加 ICU 风格的扩展
         // 注意：SmartFormat 本身不直接支持 ICU 语法，我们需要转换
 

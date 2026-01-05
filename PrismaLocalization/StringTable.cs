@@ -147,7 +147,7 @@ public class StringTable
         var data = new LocalizationData
         {
             Culture = _tableId,
-            Entries = _entries.Select kvp =>
+            Entries = _entries.Select(kvp =>
             {
                 var key = kvp.Value.Key;
                 return LocalizationEntry.FromKey(key, key.DefaultValue ?? key.Key);

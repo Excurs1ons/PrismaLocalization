@@ -461,7 +461,7 @@ public class LocalizationWorkflow
 
         AddSourceWithKey(source, key);
 
-        return new LocalizationKey(_namespace, key, cat, source);
+        return new LocalizationKey(_namespace, key, cat, LocalizationVariant.None, source);
     }
 
     /// <summary>
@@ -660,7 +660,7 @@ public class LocalizationWorkflow
                 {
                     sb.Append('\t');
                     var variantTranslation = entry.GetVariantTranslation(culture, variant);
-                    sb.Append(variationTranslation ?? "");
+                    sb.Append(variantTranslation ?? "");
                 }
             }
             sb.AppendLine();

@@ -56,6 +56,7 @@ public class LocalizationEntry
             Namespace ?? string.Empty,
             Key,
             category,
+            LocalizationVariant.None,
             Text // Use text as default value
         );
     }

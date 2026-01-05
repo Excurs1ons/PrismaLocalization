@@ -23,9 +23,18 @@ public class LocalizationManager : IDisposable
     /// </summary>
     public LocalizationManager()
     {
-        _formatter = Smart.CreateDefaultSmartFormat();
-        _formatter.Settings.FormatErrorAction = ErrorAction.ThrowError;
-        _formatter.Settings.ParseErrorAction = ErrorAction.ThrowError;
+        SmartSettings settings = new()
+        {
+            Formatter =
+            {
+                ErrorAction = FormatErrorAction.ThrowError
+            },
+            Parser =
+            {
+                ErrorAction = ParseErrorAction.ThrowError
+            }
+        };
+        _formatter = Smart.CreateDefaultSmartFormat(settings);
         _currentCulture = CultureInfo.CurrentCulture.Name;
     }
 

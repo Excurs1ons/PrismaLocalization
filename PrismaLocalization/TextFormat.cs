@@ -17,9 +17,19 @@ public static class TextFormat
     /// </summary>
     private static SmartFormatter CreateFormatter()
     {
-        var formatter = Smart.CreateDefaultSmartFormat();
-        formatter.Settings.FormatErrorAction = ErrorAction.ThrowError;
-        formatter.Settings.ParseErrorAction = ErrorAction.ThrowError;
+        SmartSettings settings = new()
+        {
+            Formatter =
+            {
+                ErrorAction = FormatErrorAction.ThrowError
+            },
+            Parser =
+            {
+                ErrorAction = ParseErrorAction.ThrowError
+            }
+        };
+        
+        var formatter = Smart.CreateDefaultSmartFormat(settings);
 
         // 注册自定义格式化扩展
         // formatter.AddExtensions(new PluralFormatter());

@@ -30,13 +30,7 @@ public enum LocalizationCategory
     /// Pronouns - words referring to people (he, she, they, etc.)
     /// </summary>
     Pronoun = 400,
-
-    /// <summary>
-    /// Personal pronouns (I, you, he, she, it, we, they)
-    /// </summary>
-    [Obsolete("Use Pronoun instead")]
-    PersonalPronoun = Pronoun,
-
+    
     /// <summary>
     /// Numbers and quantities.
     /// </summary>
