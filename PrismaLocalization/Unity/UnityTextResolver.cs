@@ -1,6 +1,9 @@
 #if UNITY_5_3_OR_NEWER
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace PrismaLocalization.Unity
 {
@@ -84,9 +87,9 @@ namespace PrismaLocalization.Unity
             return obj switch
             {
                 GameObject go => go.name,
-                Component component => GetTextFromUnityObject(component.gameObject),
                 Text text => text.text,
                 TMPro.TMP_Text tmpText => tmpText.text,
+                Component component => GetTextFromUnityObject(component.gameObject),
                 _ => obj.ToString()
             };
         }
@@ -159,7 +162,7 @@ namespace PrismaLocalization.Unity
 
         private void Initialize()
         {
-            _localizationKey = new LocalizationKey(_namespace, _key, _category, _defaultValue);
+            _localizationKey = new LocalizationKey(Namespace: _namespace, Key: _key, Category: _category, DefaultValue: _defaultValue);
 
             // 自动查找 Text 组件
             if (_targetText == null && _targetTextMeshPro == null)
@@ -204,7 +207,7 @@ namespace PrismaLocalization.Unity
         /// <summary>
         /// 使用命名参数更新文本。
         /// </summary>
-        public void UpdateTextNamed(Dictionary<string, object?> args)
+        public void UpdateTextNamed(Dictionary<string, object> args)
         {
             var text = LocalizationManager.Instance.GetText(_localizationKey, args);
             SetText(text);
