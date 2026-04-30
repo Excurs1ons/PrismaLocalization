@@ -4,112 +4,113 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PrismaLocalization;
-
-/// <summary>
-/// Represents a single localization entry for JSON serialization.
-/// </summary>
-public class LocalizationEntry
+namespace PrismaLocalization
 {
     /// <summary>
-    /// The localization key.
+    /// Represents a single localization entry for JSON serialization.
     /// </summary>
-    [JsonProperty("key")]
-    public string Key { get; set; } = string.Empty;
-
-    /// <summary>
-    /// The namespace for the key (optional).
-    /// </summary>
-    [JsonProperty("namespace")]
-    public string? Namespace { get; set; }
-
-    /// <summary>
-    /// The category of this entry.
-    /// </summary>
-    [JsonProperty("category")]
-    public string Category { get; set; } = "General";
-
-    /// <summary>
-    /// The translated text template.
-    /// </summary>
-    [JsonProperty("text")]
-    public string Text { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Optional context information for translators.
-    /// </summary>
-    [JsonProperty("context")]
-    public string? Context { get; set; }
-
-    /// <summary>
-    /// Optional developer comments.
-    /// </summary>
-    [JsonProperty("comment")]
-    public string? Comment { get; set; }
-
-    /// <summary>
-    /// Converts this entry to a LocalizationKey.
-    /// </summary>
-    public LocalizationKey ToLocalizationKey()
+    public class LocalizationEntry
     {
-        var category = Enum.TryParse<LocalizationCategory>(Category, out var cat)
-            ? cat
-            : LocalizationCategory.General;
+        /// <summary>
+        /// The localization key.
+        /// </summary>
+        [JsonProperty("key")]
+        public string Key { get; set; } = string.Empty;
 
-        return new LocalizationKey(
-            Namespace ?? string.Empty,
-            Key,
-            category,
-            LocalizationVariant.None,
-            Text // Use text as default value
-        );
-    }
+        /// <summary>
+        /// The namespace for the key (optional).
+        /// </summary>
+        [JsonProperty("namespace")]
+        public string? Namespace { get; set; }
 
-    /// <summary>
-    /// Creates a LocalizationEntry from a LocalizationKey.
-    /// </summary>
-    public static LocalizationEntry FromKey(LocalizationKey key, string text, string? context = null, string? comment = null)
-    {
-        return new LocalizationEntry
+        /// <summary>
+        /// The category of this entry.
+        /// </summary>
+        [JsonProperty("category")]
+        public string Category { get; set; } = "General";
+
+        /// <summary>
+        /// The translated text template.
+        /// </summary>
+        [JsonProperty("text")]
+        public string Text { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Optional context information for translators.
+        /// </summary>
+        [JsonProperty("context")]
+        public string? Context { get; set; }
+
+        /// <summary>
+        /// Optional developer comments.
+        /// </summary>
+        [JsonProperty("comment")]
+        public string? Comment { get; set; }
+
+        /// <summary>
+        /// Converts this entry to a LocalizationKey.
+        /// </summary>
+        public LocalizationKey ToLocalizationKey()
         {
-            Key = key.Key,
-            Namespace = string.IsNullOrEmpty(key.Namespace) ? null : key.Namespace,
-            Category = key.Category.ToString(),
-            Text = text,
-            Context = context,
-            Comment = comment
-        };
+            var category = Enum.TryParse<LocalizationCategory>(Category, out var cat)
+                ? cat
+                : LocalizationCategory.General;
+
+            return new LocalizationKey(
+                Namespace ?? string.Empty,
+                Key,
+                category,
+                LocalizationVariant.None,
+                Text // Use text as default value
+            );
+        }
+
+        /// <summary>
+        /// Creates a LocalizationEntry from a LocalizationKey.
+        /// </summary>
+        public static LocalizationEntry FromKey(LocalizationKey key, string text, string? context = null, string? comment = null)
+        {
+            return new LocalizationEntry
+            {
+                Key = key.Key,
+                Namespace = string.IsNullOrEmpty(key.Namespace) ? null : key.Namespace,
+                Category = key.Category.ToString(),
+                Text = text,
+                Context = context,
+                Comment = comment
+            };
+        }
     }
-}
-
-/// <summary>
-/// Container for all localization entries for a specific culture.
-/// </summary>
-public class LocalizationData
-{
-    /// <summary>
-    /// The culture code (e.g., "en-US", "zh-CN").
-    /// </summary>
-    [JsonProperty("culture")]
-    public string Culture { get; set; } = string.Empty;
 
     /// <summary>
-    /// The localization entries, optionally grouped by category.
+    /// Container for all localization entries for a specific culture.
     /// </summary>
-    [JsonProperty("entries")]
-    public List<LocalizationEntry> Entries { get; set; } = new();
-
-    /// <summary>
-    /// Optional entries grouped by category for easier editing.
-    /// </summary>
-    [JsonProperty("byCategory")]
-    public Dictionary<string, List<LocalizationEntry>>? ByCategory { get; set; }
-
-    /// <summary>
-    /// Gets entries for a specific category.
-    /// </summary>
-    public List<LocalizationEntry> GetEntriesByCategory(LocalizationCategory category)
+    public class LocalizationData
     {
-        return Entries.Where(e => e.Category.Equals(category.ToString(), StringComparison.OrdinalIgnoreCase)).ToList();
+        /// <summary>
+        /// The culture code (e.g., "en-US", "zh-CN").
+        /// </summary>
+        [JsonProperty("culture")]
+        public string Culture { get; set; } = string.Empty;
+
+        /// <summary>
+        /// The localization entries, optionally grouped by category.
+        /// </summary>
+        [JsonProperty("entries")]
+        public List<LocalizationEntry> Entries { get; set; } = new();
+
+        /// <summary>
+        /// Optional entries grouped by category for easier editing.
+        /// </summary>
+        [JsonProperty("byCategory")]
+        public Dictionary<string, List<LocalizationEntry>>? ByCategory { get; set; }
+
+        /// <summary>
+        /// Gets entries for a specific category.
+        /// </summary>
+        public List<LocalizationEntry> GetEntriesByCategory(LocalizationCategory category)
+        {
+            return Entries.Where(e => e.Category.Equals(category.ToString(), StringComparison.OrdinalIgnoreCase)).ToList();
+        }
     }
 }

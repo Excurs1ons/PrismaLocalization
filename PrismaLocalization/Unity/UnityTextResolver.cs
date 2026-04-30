@@ -162,7 +162,7 @@ namespace PrismaLocalization.Unity
 
         private void Initialize()
         {
-            _localizationKey = new LocalizationKey(Namespace: _namespace, Key: _key, Category: _category, DefaultValue: _defaultValue);
+            _localizationKey = new LocalizationKey(@namespace: _namespace, @key: _key, category: _category, defaultValue: _defaultValue);
 
             // 自动查找 Text 组件
             if (_targetText == null && _targetTextMeshPro == null)
