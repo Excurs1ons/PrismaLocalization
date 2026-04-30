@@ -9,6 +9,9 @@
     <Description>A powerful C# localization library inspired by Unreal Engine, using SmartFormat for text templating.</Description>
     <Authors>Prisma</Authors>
     <Version>0.1.0</Version>
+    <!-- Redirect build output outside of Unity's Assets folder to avoid conflicts -->
+    <BaseOutputPath>$(MSBuildProjectDirectory)\..\..\..\..\..\SubmoduleBuild\PrismaLocalization\bin\</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(MSBuildProjectDirectory)\..\..\..\..\..\SubmoduleBuild\PrismaLocalization\obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
 
   <ItemGroup>

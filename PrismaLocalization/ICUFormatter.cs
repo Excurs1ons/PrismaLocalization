@@ -168,11 +168,6 @@ public partial class ICUFormatter
     {
         return icuPattern;
     }
-
-    private static Regex PluralRegex() => _pluralRegex;
-    private static Regex SelectRegex() => _selectRegex;
-    private static Regex SelectOrdinalRegex() => _selectOrdinalRegex;
-    private static Regex SimplePlaceholderRegex() => _simplePlaceholderRegex;
 }
 
 /// <summary>

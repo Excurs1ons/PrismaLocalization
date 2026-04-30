@@ -37,6 +37,8 @@ public class JsonLocalizationProvider : ILocalizationProvider
     /// <param name="translationsData">文化名称到 JSON 翻译数据的映射字典。</param>
     public JsonLocalizationProvider(Dictionary<string, string> translationsData)
     {
+        _baseDirectory = string.Empty;
+        _filePattern = string.Empty;
         foreach (var (culture, json) in translationsData)
         {
             LoadCultureFromJson(culture, json);

@@ -401,7 +401,11 @@ namespace PrismaLocalization.Unity
         /// </summary>
         private void NotifyCultureChanged()
         {
+#if UNITY_2022_1_OR_NEWER
+            var components = FindObjectsByType<LocalizedTextComponent>(FindObjectsSortMode.None);
+#else
             var components = FindObjectsOfType<LocalizedTextComponent>();
+#endif
             foreach (var component in components)
             {
                 component.OnCultureChanged();
