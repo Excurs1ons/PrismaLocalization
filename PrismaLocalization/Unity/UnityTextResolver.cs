@@ -1,6 +1,9 @@
 #if UNITY_5_3_OR_NEWER
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace PrismaLocalization.Unity
 {
@@ -204,7 +207,7 @@ namespace PrismaLocalization.Unity
         /// <summary>
         /// 使用命名参数更新文本。
         /// </summary>
-        public void UpdateTextNamed(Dictionary<string, object?> args)
+        public void UpdateTextNamed(Dictionary<string, object> args)
         {
             var text = LocalizationManager.Instance.GetText(_localizationKey, args);
             SetText(text);
