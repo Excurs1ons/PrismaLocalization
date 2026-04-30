@@ -87,9 +87,9 @@ namespace PrismaLocalization.Unity
             return obj switch
             {
                 GameObject go => go.name,
-                Component component => GetTextFromUnityObject(component.gameObject),
                 Text text => text.text,
                 TMPro.TMP_Text tmpText => tmpText.text,
+                Component component => GetTextFromUnityObject(component.gameObject),
                 _ => obj.ToString()
             };
         }
@@ -162,7 +162,7 @@ namespace PrismaLocalization.Unity
 
         private void Initialize()
         {
-            _localizationKey = new LocalizationKey(_namespace, _key, _category, _defaultValue);
+            _localizationKey = new LocalizationKey(Namespace: _namespace, Key: _key, Category: _category, DefaultValue: _defaultValue);
 
             // 自动查找 Text 组件
             if (_targetText == null && _targetTextMeshPro == null)

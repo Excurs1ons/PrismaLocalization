@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace PrismaLocalization;
 
 /// <summary>
@@ -113,7 +116,7 @@ public class DelegateTextStringResolver<T> : ITextStringResolver<T>
 /// </summary>
 public class TextStringResolverManager
 {
-    private readonly List<ITextStringResolver> _resolvers = [];
+    private readonly List<ITextStringResolver> _resolvers = new();
 
     /// <summary>
     /// 获取默认实例。

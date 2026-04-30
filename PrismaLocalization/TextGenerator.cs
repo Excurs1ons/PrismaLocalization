@@ -1,5 +1,10 @@
+using System;
+using System.Collections.Generic;
 using System.Globalization;
+
+#if PRISMA_USE_SMARTFORMAT
 using SmartFormat;
+#endif
 
 namespace PrismaLocalization;
 
@@ -116,7 +121,6 @@ public static class TextGenerator
 
         try
         {
-            var regionInfo = new RegionInfo(cultureInfo.Name);
             return value.ToString("C", cultureInfo);
         }
         catch
