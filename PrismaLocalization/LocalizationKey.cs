@@ -11,7 +11,7 @@ namespace PrismaLocalization;
 /// <param name="Category">本地化条目的分类。</param>
 /// <param name="Variant">此键的语法变体。</param>
 /// <param name="DefaultValue">默认（回退）文本模板。</param>
-public record struct LocalizationKey(
+public readonly record struct LocalizationKey(
     string Namespace,
     string Key,
     LocalizationCategory Category = LocalizationCategory.General,

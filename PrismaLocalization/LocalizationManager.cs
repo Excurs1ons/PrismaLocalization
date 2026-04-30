@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-
-#if PRISMA_USE_SMARTFORMAT
 using SmartFormat;
 using SmartFormat.Core.Settings;
-#endif
 
 namespace PrismaLocalization;
 
@@ -15,10 +9,8 @@ namespace PrismaLocalization;
 /// </summary>
 public class LocalizationManager : IDisposable
 {
-#if PRISMA_USE_SMARTFORMAT
     private readonly SmartFormatter _formatter;
-#endif
-    private readonly List<ILocalizationProvider> _providers = new();
+    private readonly List<ILocalizationProvider> _providers = [];
     private string _currentCulture;
 
     /// <summary>
@@ -31,20 +23,18 @@ public class LocalizationManager : IDisposable
     /// </summary>
     public LocalizationManager()
     {
-#if PRISMA_USE_SMARTFORMAT
         SmartSettings settings = new()
         {
             Formatter =
             {
-                ErrorAction = FormatErrorAction.Ignore
+                ErrorAction = FormatErrorAction.ThrowError
             },
             Parser =
             {
-                ErrorAction = ParseErrorAction.Ignore
+                ErrorAction = ParseErrorAction.ThrowError
             }
         };
         _formatter = Smart.CreateDefaultSmartFormat(settings);
-#endif
         _currentCulture = CultureInfo.CurrentCulture.Name;
     }
 
@@ -81,6 +71,9 @@ public class LocalizationManager : IDisposable
     /// <summary>
     /// 获取指定键的本地化文本，支持可选参数。
     /// </summary>
+    /// <param name="key">本地化键。</param>
+    /// <param name="args">用于格式化模板的参数。</param>
+    /// <returns>格式化后的本地化文本。</returns>
     public string GetText(LocalizationKey key, params object[] args)
     {
         return GetText(key, CurrentCulture, args);
@@ -89,6 +82,10 @@ public class LocalizationManager : IDisposable
     /// <summary>
     /// 获取指定键和文化的本地化文本，支持可选参数。
     /// </summary>
+    /// <param name="key">本地化键。</param>
+    /// <param name="culture">文化名称。</param>
+    /// <param name="args">用于格式化模板的参数。</param>
+    /// <returns>格式化后的本地化文本。</returns>
     public string GetText(LocalizationKey key, string culture, params object[] args)
     {
         var template = GetTemplate(key, culture);
@@ -98,6 +95,9 @@ public class LocalizationManager : IDisposable
     /// <summary>
     /// 获取指定键的本地化文本，支持命名参数。
     /// </summary>
+    /// <param name="key">本地化键。</param>
+    /// <param name="args">用于格式化模板的命名参数。</param>
+    /// <returns>格式化后的本地化文本。</returns>
     public string GetText(LocalizationKey key, Dictionary<string, object?> args)
     {
         return GetText(key, CurrentCulture, args);
@@ -106,6 +106,10 @@ public class LocalizationManager : IDisposable
     /// <summary>
     /// 获取指定键和文化的本地化文本，支持命名参数。
     /// </summary>
+    /// <param name="key">本地化键。</param>
+    /// <param name="culture">文化名称。</param>
+    /// <param name="args">用于格式化模板的命名参数。</param>
+    /// <returns>格式化后的本地化文本。</returns>
     public string GetText(LocalizationKey key, string culture, Dictionary<string, object?> args)
     {
         var template = GetTemplate(key, culture);
@@ -124,6 +128,7 @@ public class LocalizationManager : IDisposable
                 return template;
         }
 
+        // 返回默认值或键作为回退
         return key.DefaultValue ?? key.FullKey;
     }
 
@@ -135,7 +140,6 @@ public class LocalizationManager : IDisposable
         if (args.Length == 0)
             return template;
 
-#if PRISMA_USE_SMARTFORMAT
         try
         {
             return _formatter.Format(template, args);
@@ -144,16 +148,6 @@ public class LocalizationManager : IDisposable
         {
             return string.Format(template, args);
         }
-#else
-        try
-        {
-            return string.Format(template, args);
-        }
-        catch
-        {
-            return template;
-        }
-#endif
     }
 
     /// <summary>
@@ -164,19 +158,17 @@ public class LocalizationManager : IDisposable
         if (args.Count == 0)
             return template;
 
-#if PRISMA_USE_SMARTFORMAT
         try
         {
             return _formatter.Format(template, args);
         }
         catch
-#endif
         {
-            // Fallback: manual replacement for named placeholders
+            // 回退：手动替换占位符
             var result = template;
-            foreach (var kv in args)
+            foreach (var (key, value) in args)
             {
-                result = result.Replace($"{{{kv.Key}}}", kv.Value?.ToString() ?? "");
+                result = result.Replace($"{{{key}}}", value?.ToString() ?? "");
             }
             return result;
         }
@@ -217,6 +209,8 @@ public class LocalizationManager : IDisposable
     {
         if (this == Instance)
             return;
+
+        // 释放资源（如果需要）
         GC.SuppressFinalize(this);
     }
 }
